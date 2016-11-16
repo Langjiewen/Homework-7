@@ -117,12 +117,12 @@ class Main extends egret.DisplayObjectContainer {
      * Create a game scene
      */
     private createGameScene():void {
-       var sky:egret.Bitmap = this.createBitmapByName("background_jpg");
-        this.addChild(sky);
+        var background:egret.Bitmap = this.createBitmapByName("background_jpg");
+        this.addChild(background);
         var stageW:number = this.stage.stageWidth;
         var stageH:number = this.stage.stageHeight;
-        sky.width = stageW;
-        sky.height = stageH;
+        background.width = stageW;
+        background.height = stageH;
 
         var topMask = new egret.Shape();
         topMask.graphics.beginFill(0x000000, 0.5);
@@ -161,7 +161,7 @@ class Main extends egret.DisplayObjectContainer {
         var task_0: Task = new Task("000", "对话任务");
         task_0.fromNpcId = "NPC_1";
         task_0.toNpcId = "NPC_2"; 
-        task_0.status = TaskStatus.ACCEPTABLE;
+        task_0.setStatus(TaskStatus.ACCEPTABLE);
         
         TaskService.getInstance().addTask(task_0);
         var mainPanel: TaskPanel = new TaskPanel(50, 0);

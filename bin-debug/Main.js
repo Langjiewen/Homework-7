@@ -101,12 +101,12 @@ var Main = (function (_super) {
      * Create a game scene
      */
     p.createGameScene = function () {
-        var sky = this.createBitmapByName("background_jpg");
-        this.addChild(sky);
+        var background = this.createBitmapByName("background_jpg");
+        this.addChild(background);
         var stageW = this.stage.stageWidth;
         var stageH = this.stage.stageHeight;
-        sky.width = stageW;
-        sky.height = stageH;
+        background.width = stageW;
+        background.height = stageH;
         var topMask = new egret.Shape();
         topMask.graphics.beginFill(0x000000, 0.5);
         topMask.graphics.drawRect(0, 0, stageW, 172);
@@ -139,7 +139,7 @@ var Main = (function (_super) {
         var task_0 = new Task("000", "对话任务");
         task_0.fromNpcId = "NPC_1";
         task_0.toNpcId = "NPC_2";
-        task_0.status = TaskStatus.ACCEPTABLE;
+        task_0.setStatus(TaskStatus.ACCEPTABLE);
         TaskService.getInstance().addTask(task_0);
         var mainPanel = new TaskPanel(50, 0);
         TaskService.getInstance().addObserver(mainPanel);

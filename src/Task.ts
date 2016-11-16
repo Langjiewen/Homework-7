@@ -1,41 +1,47 @@
 class Task {
 
-    private _id: string;
-    private _name: string;
-    private _status: TaskStatus;
+    private id: string;
+    private name: string;
+    private status: TaskStatus;
 
     public fromNpcId: string;
     public toNpcId: string;
     public desc: string;
 
-    constructor(id: string, name: string) {
-        this._id = id;
-        this._name = name;
-
-    }
-    public get status(): TaskStatus {
-
-        return this._status;
+    constructor(id: string, name: string) 
+    {
+        this.id = id;
+        this.name = name;
     }
 
-    public get id(): string {
-        return this._id;
+    public setStatus(value: TaskStatus): void 
+    {
+        this.status = value;
     }
 
-    public get name(): string {
-        return this._name;
+    public setNme(name: string): void 
+    {
+        this.name = name;
     }
 
-    public set status(value: TaskStatus) {
-        this._status = value;
-
-    }
-    public set name(name: string) {
-        this._name = name;
+    public setId(id: string): void 
+    {
+        this.id = id;
     }
 
-    public set id(id: string) {
-        this._id = id;
+    public getStatus(): TaskStatus 
+    {
+        return this.status;
     }
 
+    public getId(): string 
+    {
+        return this.id;
+    }
+
+    public getName(): string 
+    {
+        return this.name;
+    }
+    
 }

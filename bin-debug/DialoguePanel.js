@@ -1,7 +1,7 @@
 //对话面板只在点击NPC的时候出现
 var DialoguePanel = (function (_super) {
     __extends(DialoguePanel, _super);
-    function DialoguePanel(talk) {
+    function DialoguePanel(text) {
         _super.call(this);
         this.body = new egret.Shape();
         this.body.graphics.beginFill(0x000000, 0.5);
@@ -9,10 +9,10 @@ var DialoguePanel = (function (_super) {
         this.body.graphics.endFill();
         this.body.y = 1000;
         this.textField = new egret.TextField();
-        this.textField.text = talk;
-        this.button = new Button("继续_png");
+        this.textField.text = text;
         this.textField.x = 160;
         this.textField.y = 1050;
+        this.button = new Button("继续_png");
         this.button.width = 40;
         this.button.height = 40;
         this.button.x = 500;
@@ -26,14 +26,14 @@ var DialoguePanel = (function (_super) {
         this.addChild(this.button);
         this.addChild(this.textField);
     };
-    p.disshowDpanel = function () {
+    p.removeDpanel = function () {
         this.removeChild(this.body);
         this.removeChild(this.button);
         this.removeChild(this.textField);
     };
     p.onButtonClick = function () {
-        this.disshowDpanel();
-        switch (TaskService.getInstance().taskList["000"].status) {
+        this.removeDpanel();
+        switch (TaskService.getInstance().taskList["000"].getStatus()) {
             case TaskStatus.ACCEPTABLE:
                 TaskService.getInstance().accept("000");
                 break;

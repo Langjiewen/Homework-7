@@ -1,33 +1,27 @@
 var Task = (function () {
     function Task(id, name) {
-        this._id = id;
-        this._name = name;
+        this.id = id;
+        this.name = name;
     }
     var d = __define,c=Task,p=c.prototype;
-    d(p, "status"
-        ,function () {
-            return this._status;
-        }
-        ,function (value) {
-            this._status = value;
-        }
-    );
-    d(p, "id"
-        ,function () {
-            return this._id;
-        }
-        ,function (id) {
-            this._id = id;
-        }
-    );
-    d(p, "name"
-        ,function () {
-            return this._name;
-        }
-        ,function (name) {
-            this._name = name;
-        }
-    );
+    p.setStatus = function (value) {
+        this.status = value;
+    };
+    p.setNme = function (name) {
+        this.name = name;
+    };
+    p.setId = function (id) {
+        this.id = id;
+    };
+    p.getStatus = function () {
+        return this.status;
+    };
+    p.getId = function () {
+        return this.id;
+    };
+    p.getName = function () {
+        return this.name;
+    };
     return Task;
 }());
 egret.registerClass(Task,'Task');

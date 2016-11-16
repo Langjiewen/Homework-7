@@ -1,3 +1,4 @@
-interface Observer {
+interface Observer 
+{
     onChange(task: Task): void;
 }

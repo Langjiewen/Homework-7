@@ -4,7 +4,7 @@ var TaskService = (function () {
         this.observerList = [];
         TaskService.count++;
         if (TaskService.count > 1) {
-            throw "singleton!!!";
+            throw "!!!";
         }
     }
     var d = __define,c=TaskService,p=c.prototype;
@@ -17,12 +17,7 @@ var TaskService = (function () {
     p.getTaskByCustomRule = function () {
         for (var id in this.taskList) {
             var task = this.taskList[id];
-            if (task.status == TaskStatus.CAN_SUBMIT)
-                return task;
-        }
-        for (var id in this.taskList) {
-            var task = this.taskList[id];
-            if (task.status == TaskStatus.ACCEPTABLE)
+            if (task.getStatus() == TaskStatus.CAN_SUBMIT)
                 return task;
         }
     };
@@ -31,10 +26,9 @@ var TaskService = (function () {
             return ErrorCode.MISSING_TASK;
         }
         var task = this.taskList[id];
-        if (task.id == id) {
-            task.status = TaskStatus.CAN_SUBMIT;
+        if (task.getId() == id) {
+            task.setStatus(TaskStatus.CAN_SUBMIT);
             this.notify(this.taskList[id]);
-            console.log("111");
             return ErrorCode.SUCCESS;
         }
         else {
@@ -46,8 +40,8 @@ var TaskService = (function () {
             return ErrorCode.MISSING_TASK;
         }
         var task = this.taskList[id];
-        if (task.id == id) {
-            task.status = TaskStatus.SUBMITED;
+        if (task.getId() == id) {
+            task.setStatus(TaskStatus.SUBMITED);
             this.notify(this.taskList[id]);
             return ErrorCode.SUCCESS;
         }
@@ -62,7 +56,7 @@ var TaskService = (function () {
         }
     };
     p.addTask = function (task) {
-        this.taskList[task.id] = task;
+        this.taskList[task.getId()] = task;
     };
     p.addObserver = function (observer) {
         for (var i = 0; i < this.observerList.length; i++) {
