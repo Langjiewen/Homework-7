@@ -1,10 +1,7 @@
-class NPC extends egret.DisplayObjectContainer implements Observer {
-    public _emoji: egret.Bitmap;
-    public _body: egret.Bitmap;
-    private id: string;
-    public dialoguePanel: DialoguePanel;
-    constructor(id: string, ad: string, x: number, y: number, dp: DialoguePanel) {
-        super();
+var NPC = (function (_super) {
+    __extends(NPC, _super);
+    function NPC(id, ad, x, y, dp) {
+        _super.call(this);
         this._body = new egret.Bitmap();
         this._emoji = new egret.Bitmap();
         this.dialoguePanel = dp;
@@ -23,30 +20,28 @@ class NPC extends egret.DisplayObjectContainer implements Observer {
         this.addChild(this._emoji);
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onNPCClick, this);
-
     }
-
-    onChange(task: Task) {
+    var d = __define,c=NPC,p=c.prototype;
+    p.onChange = function (task) {
         if (task.status == TaskStatus.ACCEPTABLE && this.id == task.fromNpcId) {
             this._emoji.alpha = 1;
         }
         if (task.status == TaskStatus.CAN_SUBMIT && this.id == task.fromNpcId) {
-
             this._emoji.alpha = 0;
         }
         if (task.status == TaskStatus.CAN_SUBMIT && this.id == task.toNpcId) {
             this._emoji.texture = RES.getRes("感叹号_png");
-            this._emoji.alpha=1;
+            this._emoji.alpha = 1;
         }
         if (task.status == TaskStatus.SUBMITED && this.id == task.toNpcId) {
             this._emoji.alpha = 0;
         }
-    }
-
-    onNPCClick() {
-
+    };
+    p.onNPCClick = function () {
         this.dialoguePanel.showDpanel();
         TaskService.getInstance().notify(TaskService.getInstance().taskList["000"]);
-
-    }
-}
+    };
+    return NPC;
+}(egret.DisplayObjectContainer));
+egret.registerClass(NPC,'NPC',["Observer"]);
+//# sourceMappingURL=NPC.js.map

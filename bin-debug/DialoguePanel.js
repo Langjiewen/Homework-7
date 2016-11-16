@@ -1,11 +1,8 @@
 //对话面板只在点击NPC的时候出现
-class DialoguePanel extends egret.DisplayObjectContainer {
-
-    button: Button;
-    textField: egret.TextField;
-    body: egret.Shape;
-    constructor(talk:string) {
-        super();
+var DialoguePanel = (function (_super) {
+    __extends(DialoguePanel, _super);
+    function DialoguePanel(talk) {
+        _super.call(this);
         this.body = new egret.Shape();
         this.body.graphics.beginFill(0x000000, 0.5);
         this.body.graphics.drawRect(0, 0, 800, 172);
@@ -22,38 +19,33 @@ class DialoguePanel extends egret.DisplayObjectContainer {
         this.button.y = 1000;
         this.button.touchEnabled = true;
         this.button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
-
     }
-
-    showDpanel() {
+    var d = __define,c=DialoguePanel,p=c.prototype;
+    p.showDpanel = function () {
         this.addChild(this.body);
         this.addChild(this.button);
         this.addChild(this.textField);
-    }
-
-    disshowDpanel() {
+    };
+    p.disshowDpanel = function () {
         this.removeChild(this.body);
         this.removeChild(this.button);
         this.removeChild(this.textField);
-    }
-
-
-    onButtonClick() {
+    };
+    p.onButtonClick = function () {
         this.disshowDpanel();
         switch (TaskService.getInstance().taskList["000"].status) {
             case TaskStatus.ACCEPTABLE:
-
                 TaskService.getInstance().accept("000");
-
                 break;
             case TaskStatus.CAN_SUBMIT:
                 TaskService.getInstance().finish("000");
-
                 break;
             default:
-                return
-
+                return;
         }
         TaskService.getInstance().notify(TaskService.getInstance().taskList["000"]);
-    }
-}
+    };
+    return DialoguePanel;
+}(egret.DisplayObjectContainer));
+egret.registerClass(DialoguePanel,'DialoguePanel');
+//# sourceMappingURL=DialoguePanel.js.map

@@ -1,23 +1,45 @@
 {
-	"groups":[
-	{
-		"keys":"bg_jpg,egret_icon_png,description_json",
-		"name":"preload"
-	}],
-	"resources":[
-	{
-		"name":"bg_jpg",
-		"type":"image",
-		"url":"assets/bg.jpg"
-	},
-	{
-		"name":"egret_icon_png",
-		"type":"image",
-		"url":"assets/egret_icon.png"
-	},
-	{
-		"name":"description_json",
-		"type":"json",
-		"url":"config/description.json"
-	}]
+	"groups": [
+		{
+			"keys": "background_jpg,NPC1_png,NPC2_png,问号_png,感叹号_png,继续_png,description_json",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/background.jpg",
+			"type": "image",
+			"name": "background_jpg"
+		},
+		{
+			"url": "assets/NPC1.png",
+			"type": "image",
+			"name": "NPC1_png"
+		},
+		{
+			"url": "assets/NPC2.png",
+			"type": "image",
+			"name": "NPC2_png"
+		},
+		{
+			"url": "assets/问号.png",
+			"type": "image",
+			"name": "问号_png"
+		},
+		{
+			"url": "assets/感叹号.png",
+			"type": "image",
+			"name": "感叹号_png"
+		},
+		{
+			"url": "assets/继续.png",
+			"type": "image",
+			"name": "继续_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		}
+	]
 }
