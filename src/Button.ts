@@ -1,4 +1,5 @@
-class Button extends egret.DisplayObjectContainer {
+class Button extends egret.DisplayObjectContainer
+ {
     body: egret.Bitmap;
     constructor(ad: string) {
         super();

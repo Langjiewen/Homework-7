@@ -102,14 +102,14 @@ var Main = (function (_super) {
      */
     p.createGameScene = function () {
         var background = this.createBitmapByName("background_jpg");
-        this.addChild(background);
         var stageW = this.stage.stageWidth;
         var stageH = this.stage.stageHeight;
         background.width = stageW;
         background.height = stageH;
+        this.addChild(background);
         var topMask = new egret.Shape();
         topMask.graphics.beginFill(0x000000, 0.5);
-        topMask.graphics.drawRect(0, 0, stageW, 172);
+        topMask.graphics.drawRect(0, 0, stageW, 180);
         topMask.graphics.endFill();
         topMask.y = 33;
         this.addChild(topMask);
@@ -123,35 +123,25 @@ var Main = (function (_super) {
         textfield.x = 172;
         textfield.y = 135;
         this.textfield = textfield;
-        var Start = new egret.TextField();
-        this.addChild(Start);
-        Start.textColor = 0xffffff;
-        Start.width = stageW - 172;
-        Start.textAlign = "center";
-        Start.text = "请先跟NPC1对话，再跟NPC2对话ﾞ";
-        Start.size = 24;
-        Start.x = 172;
-        Start.y = 100;
-        var Dpanel_1 = new DialoguePanel("请立即告诉队员任务信息");
-        var Dpanel_2 = new DialoguePanel("Yes，sir!");
-        var NPC_1 = new NPC("NPC_1", "NPC1_png", 150, 650, Dpanel_1);
-        var NPC_2 = new NPC("NPC_2", "NPC2_png", 350, 650, Dpanel_2);
-        var task_0 = new Task("000", "对话任务");
-        task_0.fromNpcId = "NPC_1";
-        task_0.toNpcId = "NPC_2";
-        task_0.setStatus(TaskStatus.ACCEPTABLE);
-        TaskService.getInstance().addTask(task_0);
-        var mainPanel = new TaskPanel(50, 0);
+        var mainPanel = new TaskPanel(50, 50);
+        var Dpanel1 = new DialoguePanel("请帮我告诉小白：我爱她~");
+        var Dpanel2 = new DialoguePanel("我知道了。谢谢（害羞）");
+        var NPC1 = new NPC("NPC1", "NPC1_png", 30, 120, Dpanel1);
+        var NPC2 = new NPC("NPC2", "NPC2_png", 170, 300, Dpanel2);
+        var task0 = new Task("000", "帮小黑传话给小白");
+        task0.fromNpcId = "NPC1";
+        task0.toNpcId = "NPC2";
+        task0.setStatus(TaskStatus.ACCEPTABLE);
+        TaskService.getInstance().addTask(task0);
         TaskService.getInstance().addObserver(mainPanel);
-        TaskService.getInstance().addObserver(NPC_1);
-        TaskService.getInstance().addObserver(NPC_2);
+        TaskService.getInstance().addObserver(NPC1);
+        TaskService.getInstance().addObserver(NPC2);
         this.addChild(mainPanel);
-        this.addChild(NPC_1);
-        this.addChild(NPC_2);
-        this.addChild(Dpanel_1);
-        this.addChild(Dpanel_2);
+        this.addChild(NPC1);
+        this.addChild(NPC2);
+        this.addChild(Dpanel1);
+        this.addChild(Dpanel2);
         TaskService.getInstance().notify(TaskService.getInstance().getTaskByCustomRule());
-        console.log(TaskService.getInstance().taskList["000"]);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

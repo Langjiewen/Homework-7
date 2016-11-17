@@ -1,8 +1,8 @@
 enum TaskStatus
 {
-    UNACCEPTABLE,
-    ACCEPTABLE,  
-    DURING,
-    CAN_SUBMIT,
-    SUBMITED  
+    UNACCEPTABLE = 0 ,
+    ACCEPTABLE = 1,  
+    DURING = 2,
+    CAN_SUBMIT = 3,
+    SUBMITED = 4  
 }

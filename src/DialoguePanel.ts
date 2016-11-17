@@ -17,7 +17,7 @@ class DialoguePanel extends egret.DisplayObjectContainer
 
         this.textField = new egret.TextField();
         this.textField.text = text;
-        this.textField.x = 160;
+        this.textField.x = 150;
         this.textField.y = 1050;
 
         this.button = new Button("继续_png");
@@ -47,7 +47,8 @@ class DialoguePanel extends egret.DisplayObjectContainer
     public onButtonClick(): void 
     {
         this.removeDpanel();
-        switch (TaskService.getInstance().taskList["000"].getStatus()) {
+        switch (TaskService.getInstance().taskList["000"].getStatus()) 
+        {
             case TaskStatus.ACCEPTABLE:
                 TaskService.getInstance().accept("000");
                 break;
